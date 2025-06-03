@@ -3,7 +3,7 @@ import { IoMdContact } from "react-icons/io";
 import { MdLocalPhone } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsOps";
+import { deleteContact } from "../../redux/contacts/operations";
 
 export default function Contact({ data: { id, name, number } }) {
   const link = `tel:${number}`;

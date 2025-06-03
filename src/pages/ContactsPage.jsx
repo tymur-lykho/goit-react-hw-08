@@ -1,19 +1,17 @@
-import "./App.css";
-import "modern-normalize";
-import ContactForm from "./components/ContactForm/ContactForm";
-import SearchBox from "./components/SearchBox/SearchBox";
-import ContactList from "./components/ContactList/ContactList";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fecthContacts } from "./redux/contactsOps";
+import { useDispatch, useSelector } from "react-redux";
+import ContactForm from "../components/ContactForm/ContactForm.jsx";
+import SearchBox from "../components/SearchBox/SearchBox.jsx";
+import ContactList from "../components/ContactList/ContactList.jsx";
+import { fecthContacts } from "../../redux/contacts/operations.js";
 import {
   selectContacts,
   selectLoading,
   selectError,
-} from "./redux/contactsSlice.js";
-import { selectNameFilter } from "./redux/filtersSlice.js";
+} from "../../redux/contacts/selectors.js";
+import { selectNameFilter } from "../../redux/filters/selectors.js";
 
-function App() {
+export default function ContactsPage() {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectNameFilter);
   const isLoading = useSelector(selectLoading);
@@ -34,5 +32,3 @@ function App() {
     </>
   );
 }
-
-export default App;
