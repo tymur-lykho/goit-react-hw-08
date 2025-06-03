@@ -1,0 +1,24 @@
+.searchBox {
+  margin: 0 auto;
+  max-width: 405px;
+  font-family: inherit;
+  font-size: 1.1em;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.searchBox input {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid #646cff;
+  border-radius: 5px;
+  padding: 6px;
+}
+
+.searchBox input:hover,
+.searchBox input:focus {
+  border-color: #535bf2;
+}
