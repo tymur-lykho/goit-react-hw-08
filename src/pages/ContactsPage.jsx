@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import ContactForm from "../components/ContactForm/ContactForm.jsx";
 import SearchBox from "../components/SearchBox/SearchBox.jsx";
 import ContactList from "../components/ContactList/ContactList.jsx";
-import { fecthContacts } from "../../redux/contacts/operations.js";
+import { fecthContacts } from "../redux/contacts/operations.js";
 import {
   selectContacts,
   selectLoading,
   selectError,
-} from "../../redux/contacts/selectors.js";
-import { selectNameFilter } from "../../redux/filters/selectors.js";
+} from "../redux/contacts/selectors.js";
+import { selectNameFilter } from "../redux/filters/selectors.js";
 
 export default function ContactsPage() {
   const contacts = useSelector(selectContacts);

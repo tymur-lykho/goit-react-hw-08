@@ -3,6 +3,8 @@ import * as Yup from "yup";
 import clsx from "clsx";
 
 import css from "./LoginForm.module.css";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/auth/operations";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Невірний email").required("Обов'язково"),
@@ -10,14 +12,16 @@ const validationSchema = Yup.object({
 });
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values) => {
     console.log("Login attempt:", values);
-    // Тут виклик API або dispatch login-дії
+    dispatch(login(values));
   };
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{ email: "", password: "" }}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
@@ -37,7 +41,7 @@ export const LoginForm = () => {
           </div>
 
           <div className={css.formGroup}>
-            <label htmlFor="password">Пароль</label>
+            <label htmlFor="password">Password</label>
             <Field
               id="password"
               name="password"
@@ -58,7 +62,7 @@ export const LoginForm = () => {
             className={css.submitBtn}
             disabled={isSubmitting}
           >
-            Увійти
+            Log In
           </button>
         </Form>
       )}

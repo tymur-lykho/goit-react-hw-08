@@ -6,6 +6,7 @@ import HomePage from "../../pages/HomePage.jsx";
 import Layout from "../Layout/Layout.jsx";
 import LoginPage from "../../pages/LoginPage.jsx";
 import RegstrationPage from "../../pages/RegistrationPage.jsx";
+import ContactsPage from "../../pages/ContactsPage.jsx";
 
 function App() {
   return (
