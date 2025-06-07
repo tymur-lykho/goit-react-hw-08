@@ -6,37 +6,20 @@ import css from "./LoginForm.module.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
 
-const validationSchema = Yup.object({
-  email: Yup.string().email("Невірний email").required("Обов'язково"),
-  password: Yup.string().min(6, "Мінімум 6 символів").required("Обов'язково"),
-});
-
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
-    console.log("Login attempt:", values);
     dispatch(login(values));
   };
 
   return (
-    <Formik
-      initialValues={{ email: "", password: "" }}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      {({ isSubmitting, touched, errors }) => (
+    <Formik initialValues={{ email: "", password: "" }} onSubmit={handleSubmit}>
+      {() => (
         <Form className={css.form}>
           <div className={css.formGroup}>
             <label htmlFor="email">Email</label>
-            <Field
-              id="email"
-              name="email"
-              type="email"
-              className={clsx(css.input, {
-                [css.invalid]: touched.email && errors.email,
-              })}
-            />
+            <Field id="email" name="email" type="email" className={css.input} />
             <ErrorMessage name="email" component="div" className={css.error} />
           </div>
 
@@ -46,9 +29,7 @@ export const LoginForm = () => {
               id="password"
               name="password"
               type="password"
-              className={clsx(css.input, {
-                [css.invalid]: touched.password && errors.password,
-              })}
+              className={css.input}
             />
             <ErrorMessage
               name="password"
@@ -57,11 +38,7 @@ export const LoginForm = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className={css.submitBtn}
-            disabled={isSubmitting}
-          >
+          <button type="submit" className={css.submitBtn}>
             Log In
           </button>
         </Form>

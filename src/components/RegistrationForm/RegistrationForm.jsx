@@ -2,15 +2,22 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 
 import css from "./RegistrationForm.module.css";
 import { useDispatch } from "react-redux";
+import * as Yup from "yup";
 import { register } from "../../redux/auth/operations";
+
+const validationSchema = Yup.object({
+  name: Yup.string().min(3, "Minimum 3 symbols").required("Required"),
+  email: Yup.string().email("Not valid email").required("Required"),
+  password: Yup.string().min(6, "Minimum 6 symbols").required("Required"),
+});
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values) => {
-    console.log("Registration attempt:", values);
+  const handleSubmit = (values, action) => {
     const { name, email, password } = values;
     dispatch(register({ name, email, password }));
+    action.resetForm();
   };
   return (
     <div>
@@ -22,6 +29,7 @@ export default function RegistrationForm() {
           password: "",
           password2: "",
         }}
+        validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
         <Form className={css.form}>
