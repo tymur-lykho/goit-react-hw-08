@@ -4,13 +4,17 @@ import { MdLocalPhone } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
+import toast from "react-hot-toast";
 
 export default function Contact({ data: { id, name, number } }) {
   const link = `tel:${number}`;
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteContact(id));
+    dispatch(deleteContact(id))
+      .unwrap()
+      .then(() => toast.success("Contact deleted"))
+      .catch(() => toast.error("Contact not deleted"));
   };
 
   return (

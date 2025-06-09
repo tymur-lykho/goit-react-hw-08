@@ -4,11 +4,15 @@ import css from "./RegistrationForm.module.css";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { register } from "../../redux/auth/operations";
+import toast from "react-hot-toast";
 
 const validationSchema = Yup.object({
   name: Yup.string().min(3, "Minimum 3 symbols").required("Required"),
   email: Yup.string().email("Not valid email").required("Required"),
   password: Yup.string().min(6, "Minimum 6 symbols").required("Required"),
+  password2: Yup.string()
+    .oneOf([Yup.ref("password")], "Passwords must match")
+    .required("Confirm your password"),
 });
 
 export default function RegistrationForm() {
@@ -16,8 +20,12 @@ export default function RegistrationForm() {
 
   const handleSubmit = (values, action) => {
     const { name, email, password } = values;
-    dispatch(register({ name, email, password }));
-    action.resetForm();
+    dispatch(register({ name, email, password }))
+      .unwrap()
+      .then(() => action.resetForm())
+      .catch(() =>
+        toast.error("Error during registration, try changing user email")
+      );
   };
   return (
     <div>

@@ -9,11 +9,11 @@ import {
   selectLoading,
   selectError,
 } from "../redux/contacts/selectors.js";
-import { selectNameFilter } from "../redux/filters/selectors.js";
+import { selectQueryFilter } from "../redux/filters/selectors.js";
 
 export default function ContactsPage() {
   const contacts = useSelector(selectContacts);
-  const filter = useSelector(selectNameFilter);
+  const filter = useSelector(selectQueryFilter);
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
 

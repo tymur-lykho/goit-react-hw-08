@@ -9,6 +9,7 @@ import RegstrationPage from "../../pages/RegistrationPage.jsx";
 import ContactsPage from "../../pages/ContactsPage.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, lazy, Suspense } from "react";
+import { Toaster } from "react-hot-toast";
 import { selectIsRefreshing } from "../../redux/auth/selectors.js";
 import { refreshUser } from "../../redux/auth/operations.js";
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
@@ -25,6 +26,7 @@ function App() {
     <strong>Refreshing user...</strong>
   ) : (
     <>
+      <Toaster />
       <Layout>
         <Suspense fallback={null}>
           <Routes>

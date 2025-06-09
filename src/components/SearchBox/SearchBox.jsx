@@ -9,7 +9,7 @@ export default function SearchBox({ inputValue }) {
   };
   return (
     <div className={css.searchBox}>
-      <label htmlFor="searchBox">Find contacts by name</label>
+      <label htmlFor="searchBox">Find contacts</label>
       <input
         type="text"
         id="searchBox"
