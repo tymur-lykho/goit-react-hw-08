@@ -8,14 +8,17 @@ import {
   selectContacts,
   selectLoading,
   selectError,
+  selectCurrentContact,
 } from "../redux/contacts/selectors.js";
 import { selectQueryFilter } from "../redux/filters/selectors.js";
+import EditContactForm from "../components/EditContactForm/EditContactForm.jsx";
 
 export default function ContactsPage() {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectQueryFilter);
   const isLoading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const isEdit = !!useSelector(selectCurrentContact);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -25,7 +28,7 @@ export default function ContactsPage() {
   return (
     <>
       <h1>Phonebook</h1>
-      <ContactForm />
+      {isEdit ? <EditContactForm /> : <ContactForm />}
       {contacts.length !== 0 && <SearchBox inputValue={filter} />}
       {isLoading && !error && <b>Request in progress...</b>}
       <ContactList contacts={contacts} />

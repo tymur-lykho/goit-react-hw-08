@@ -17,3 +17,5 @@ export const selectFilteredContacts = createSelector(
     );
   }
 );
+
+export const selectCurrentContact = (state) => state.contacts.currentContact;
